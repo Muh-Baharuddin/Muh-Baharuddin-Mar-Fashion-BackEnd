@@ -8,6 +8,6 @@ import { DaftarSupplier } from './daftar-supplier.entity';
   imports: [TypeOrmModule.forFeature([DaftarSupplier])],
   exports: [TypeOrmModule],
   controllers: [DaftarSupplierController],
-  providers: [DaftarSupplierService]
+  providers: [DaftarSupplierService],
 })
 export class DaftarSupplierModule {}

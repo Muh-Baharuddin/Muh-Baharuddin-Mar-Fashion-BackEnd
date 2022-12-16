@@ -6,6 +6,8 @@ import {
   Patch,
   Param,
   Delete,
+  UsePipes,
+  ValidationPipe,
 } from '@nestjs/common';
 import { NotaPembelianService } from './nota-pembelian.service';
 import { CreateNotaPembelianDto } from './dto/create-nota-pembelian.dto';
@@ -16,6 +18,7 @@ export class NotaPembelianController {
   constructor(private readonly notaPembelianService: NotaPembelianService) {}
 
   @Post()
+  @UsePipes(ValidationPipe)
   create(@Body() createNotaPembelianDto: CreateNotaPembelianDto) {
     return this.notaPembelianService.create(createNotaPembelianDto);
   }
@@ -31,6 +34,7 @@ export class NotaPembelianController {
   }
 
   @Patch(':id')
+  @UsePipes(ValidationPipe)
   update(
     @Param('id') id: string,
     @Body() updateNotaPembelianDto: UpdateNotaPembelianDto,

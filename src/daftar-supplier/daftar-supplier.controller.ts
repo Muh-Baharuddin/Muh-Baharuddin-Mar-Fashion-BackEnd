@@ -6,6 +6,8 @@ import {
   Patch,
   Param,
   Delete,
+  UsePipes,
+  ValidationPipe,
 } from '@nestjs/common';
 import { DaftarSupplierService } from './daftar-supplier.service';
 import { CreateDaftarSupplierDto } from './dto/create-daftar-supplier.dto';
@@ -16,6 +18,7 @@ export class DaftarSupplierController {
   constructor(private readonly daftarSupplierService: DaftarSupplierService) {}
 
   @Post()
+  @UsePipes(ValidationPipe)
   create(@Body() createDaftarSupplierDto: CreateDaftarSupplierDto) {
     return this.daftarSupplierService.create(createDaftarSupplierDto);
   }
@@ -31,6 +34,7 @@ export class DaftarSupplierController {
   }
 
   @Patch(':id')
+  @UsePipes(ValidationPipe)
   update(
     @Param('id') id: string,
     @Body() updateDaftarSupplierDto: UpdateDaftarSupplierDto,

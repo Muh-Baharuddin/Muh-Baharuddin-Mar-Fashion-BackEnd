@@ -1,13 +1,13 @@
 import { IsNotEmpty, MinLength } from 'class-validator';
 
 export class CreateDaftarKaryawanDto {
-  @IsNotEmpty()
+  @IsNotEmpty({ message: 'nama tidak boleh kosong' })
   nama: string;
 
-  @IsNotEmpty()
+  @IsNotEmpty({ message: 'alamat tidak boleh kosong' })
   alamat: string;
 
-  @IsNotEmpty()
+  @IsNotEmpty({ message: 'nomor telepon tidak boleh kosong' })
   @MinLength(10)
-  nomor_telpon: string;
+  nomor_telepon: string;
 }

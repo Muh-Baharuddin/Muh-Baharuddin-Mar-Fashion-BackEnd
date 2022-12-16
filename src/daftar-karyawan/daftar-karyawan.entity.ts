@@ -12,5 +12,5 @@ export class DaftarKaryawan {
   alamat: string;
 
   @Column()
-  nomor_telpon: string;
+  nomor_telepon: string;
 }
