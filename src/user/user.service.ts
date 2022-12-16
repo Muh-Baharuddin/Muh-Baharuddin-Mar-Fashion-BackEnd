@@ -1,4 +1,4 @@
-import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from './user.entity';
@@ -13,24 +13,11 @@ export class UserService {
   ) {}
   async create(createUserDto: CreateUserDto) {
     const newUser = await this.usersRepository.save(createUserDto);
-    try {
-      if (newUser['raw']['affectedRows'] > 0) {
-        return {
-          message: 'User has been added',
-          user: createUserDto,
-        };
-      }
-    } catch (error) {
-      throw new HttpException(
-        {
-          status: HttpStatus.FORBIDDEN,
-          error: 'This is a custom message',
-        },
-        HttpStatus.FORBIDDEN,
-        {
-          cause: error,
-        },
-      );
+    if (newUser) {
+      return {
+        message: 'user berhasil ditambahkan',
+        user: createUserDto,
+      };
     }
   }
 
@@ -47,15 +34,20 @@ export class UserService {
       id_user,
       updateUserDto,
     );
-    try {
-      return userUpdate;
-    } catch (error) {
-      message: 'No user update';
-      return error.message;
+    if (userUpdate) {
+      return {
+        message: 'User berhasil diperbarui',
+        user: updateUserDto,
+      };
     }
   }
 
   remove(id_user: number) {
-    return this.usersRepository.delete(id_user);
+    const userDelete = this.usersRepository.delete(id_user);
+    if (userDelete) {
+      return {
+        message: 'user berhasil dihapus',
+      };
+    }
   }
 }

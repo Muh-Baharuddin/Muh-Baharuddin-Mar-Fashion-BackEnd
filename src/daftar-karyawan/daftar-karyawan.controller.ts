@@ -6,6 +6,8 @@ import {
   Patch,
   Param,
   Delete,
+  UsePipes,
+  ValidationPipe,
 } from '@nestjs/common';
 import { DaftarKaryawanService } from './daftar-karyawan.service';
 import { CreateDaftarKaryawanDto } from './dto/create-daftar-karyawan.dto';
@@ -16,6 +18,7 @@ export class DaftarKaryawanController {
   constructor(private readonly daftarKaryawanService: DaftarKaryawanService) {}
 
   @Post()
+  @UsePipes(ValidationPipe)
   create(@Body() createDaftarKaryawanDto: CreateDaftarKaryawanDto) {
     return this.daftarKaryawanService.create(createDaftarKaryawanDto);
   }
@@ -31,6 +34,7 @@ export class DaftarKaryawanController {
   }
 
   @Patch(':id')
+  @UsePipes(ValidationPipe)
   update(
     @Param('id') id: string,
     @Body() updateDaftarKaryawanDto: UpdateDaftarKaryawanDto,

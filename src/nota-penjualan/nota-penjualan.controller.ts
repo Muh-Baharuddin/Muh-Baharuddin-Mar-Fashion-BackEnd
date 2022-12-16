@@ -6,6 +6,8 @@ import {
   Patch,
   Param,
   Delete,
+  UsePipes,
+  ValidationPipe,
 } from '@nestjs/common';
 import { NotaPenjualanService } from './nota-penjualan.service';
 import { CreateNotaPenjualanDto } from './dto/create-nota-penjualan.dto';
@@ -16,6 +18,7 @@ export class NotaPenjualanController {
   constructor(private readonly notaPenjualanService: NotaPenjualanService) {}
 
   @Post()
+  @UsePipes(ValidationPipe)
   create(@Body() createNotaPenjualanDto: CreateNotaPenjualanDto) {
     return this.notaPenjualanService.create(createNotaPenjualanDto);
   }
@@ -31,6 +34,7 @@ export class NotaPenjualanController {
   }
 
   @Patch(':id')
+  @UsePipes(ValidationPipe)
   update(
     @Param('id') id: string,
     @Body() updateNotaPenjualanDto: UpdateNotaPenjualanDto,
