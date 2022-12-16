@@ -12,20 +12,13 @@ export class NotaPenjualanService {
     private notaPembelianRepository: Repository<NotaPenjualan>,
   ) {}
   async create(createNotaPenjualanDto: CreateNotaPenjualanDto) {
-    const newUser = await this.notaPembelianRepository.save(
+    const newPenjualan = await this.notaPembelianRepository.save(
       createNotaPenjualanDto,
     );
-    try {
-      if (newUser['raw']['affectedRows'] > 0) {
-        return {
-          message: 'User has been added',
-          user: createNotaPenjualanDto,
-        };
-      }
-    } catch (error) {
+    if (newPenjualan) {
       return {
-        message: 'No user added',
-        user: {},
+        message: 'data penjualan berhasil ditambahkan',
+        user: createNotaPenjualanDto,
       };
     }
   }
@@ -42,19 +35,24 @@ export class NotaPenjualanService {
     id_penjualan: number,
     updateNotaPenjualanDto: UpdateNotaPenjualanDto,
   ) {
-    const userUpdate = await this.notaPembelianRepository.update(
+    const penjualanUpdate = await this.notaPembelianRepository.update(
       id_penjualan,
       updateNotaPenjualanDto,
     );
-    try {
-      return userUpdate;
-    } catch (error) {
-      message: 'No user update';
-      return error.message;
+    if (penjualanUpdate) {
+      return {
+        message: 'data penjualan berhasil diperbarui',
+        user: updateNotaPenjualanDto,
+      };
     }
   }
 
   remove(id_penjualan: number) {
-    return this.notaPembelianRepository.delete(id_penjualan);
+    const penjualanDelete = this.notaPembelianRepository.delete(id_penjualan);
+    if (penjualanDelete) {
+      return {
+        message: 'data penjualan berhasil dihapus',
+      };
+    }
   }
 }
