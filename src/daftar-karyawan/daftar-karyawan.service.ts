@@ -42,7 +42,7 @@ export class DaftarKaryawanService {
 
   remove(id_karyawan: number) {
     const deleteKaryawan = this.daftarKaryawanRepository.delete(id_karyawan);
-    if (!deleteKaryawan) {
+    if (deleteKaryawan) {
       return {
         message: 'data karyawan berhasil diperbarui',
       };
