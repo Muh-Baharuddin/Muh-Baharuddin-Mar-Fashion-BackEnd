@@ -14,17 +14,10 @@ export class DaftarKaryawanService {
   ) {}
   async create(createDaftarKaryawanDto: CreateDaftarKaryawanDto) {
     const newKaryawan = await this.daftarKaryawanRepository.save(createDaftarKaryawanDto);
-    try {
-      if (newKaryawan['raw']['affectedRows'] > 0) {
-        return {
-          message: 'User has been added',
-          user: createDaftarKaryawanDto,
-        };
-      }
-    } catch (error) {
+    if (newKaryawan) {
       return {
-        message: 'No user added',
-        user: {},
+        message: 'data karyawan berhasil ditambahkan',
+        user: createDaftarKaryawanDto,
       };
     }
   }
@@ -39,15 +32,20 @@ export class DaftarKaryawanService {
 
   async update(id_karyawan: number, updateDaftarKaryawanDto: UpdateDaftarKaryawanDto) {
     const updateKaryawan = await this.daftarKaryawanRepository.update(id_karyawan, updateDaftarKaryawanDto);
-    try {
-      return updateKaryawan;
-    } catch (error) {
-      message: 'failed to update daftar karyawan';
-      return error.message;
+    if (updateKaryawan) {
+      return {
+        message: 'data karyawan berhasil diperbarui',
+        user: updateDaftarKaryawanDto,
+      };
     }
   }
 
   remove(id_karyawan: number) {
-    return this.daftarKaryawanRepository.delete(id_karyawan);
+    const deleteKaryawan = this.daftarKaryawanRepository.delete(id_karyawan);
+    if (!deleteKaryawan) {
+      return {
+        message: 'data karyawan berhasil diperbarui',
+      };
+    }
   }
 }
