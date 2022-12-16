@@ -12,18 +12,12 @@ export class DaftarSupplierService {
     private daftarSupplierRepository: Repository<DaftarSupplier>,
   ) {}
   async create(createSupplierDto: CreateDaftarSupplierDto) {
-    const newUser = await this.daftarSupplierRepository.save(createSupplierDto);
-    try {
-      if (newUser['raw']['affectedRows'] > 0) {
-        return {
-          message: 'User has been added',
-          user: createSupplierDto,
-        };
-      }
-    } catch (error) {
+    const newSupllier = await this.daftarSupplierRepository.save(
+      createSupplierDto,
+    );
+    if (newSupllier) {
       return {
-        message: 'No user added',
-        user: {},
+        message: 'data supplier berhasil ditambahkan',
       };
     }
   }
@@ -40,19 +34,23 @@ export class DaftarSupplierService {
     id_supplier: number,
     updateSupplierDto: UpdateDaftarSupplierDto,
   ) {
-    const userUpdate = await this.daftarSupplierRepository.update(
+    const supplierUpdate = await this.daftarSupplierRepository.update(
       id_supplier,
       updateSupplierDto,
     );
-    try {
-      return userUpdate;
-    } catch (error) {
-      message: 'No user update';
-      return error.message;
+    if (supplierUpdate) {
+      return {
+        message: 'data supplier berhasil diperbarui',
+      };
     }
   }
 
   remove(id_supplier: number) {
-    return this.daftarSupplierRepository.delete(id_supplier);
+    const deleteSupplier = this.daftarSupplierRepository.delete(id_supplier);
+    if (deleteSupplier) {
+      return {
+        message: 'data supplier berhasil dihapus',
+      };
+    }
   }
 }
