@@ -15,15 +15,10 @@ export class NotaPembelianService {
     const newPembelian = await this.notaPembelianRepository.save(
       createNotaPembelianDto,
     );
-    try {
-      if (newPembelian['raw']['affectedRows'] > 0) {
-        return {
-          message: 'User has been added',
-        };
-      }
-    } catch (error) {
+    if (newPembelian) {
       return {
-        message: 'failed to add nota pembelian',
+        message: 'data pembelian berhasil ditambahkan',
+        user: createNotaPembelianDto,
       };
     }
   }
@@ -40,19 +35,24 @@ export class NotaPembelianService {
     id_pembelian: number,
     updateNotaPembelianDto: UpdateNotaPembelianDto,
   ) {
-    const userUpdate = await this.notaPembelianRepository.update(
+    const pembelianUpdate = await this.notaPembelianRepository.update(
       id_pembelian,
       updateNotaPembelianDto,
     );
-    try {
-      return userUpdate;
-    } catch (error) {
-      message: 'No user update';
-      return error.message;
+    if (pembelianUpdate) {
+      return {
+        message: 'data pembelian berhasil diperbarui',
+        user: updateNotaPembelianDto,
+      };
     }
   }
 
   remove(id_pembelian: number) {
-    return this.notaPembelianRepository.delete(id_pembelian);
+    const pembelianDelete = this.notaPembelianRepository.delete(id_pembelian);
+    if (pembelianDelete) {
+      return {
+        message: 'data pembelian berhasil dihapus',
+      };
+    }
   }
 }
