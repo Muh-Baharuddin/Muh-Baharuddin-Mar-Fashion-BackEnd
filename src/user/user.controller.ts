@@ -29,18 +29,36 @@ export class UserController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.userService.findOne(+id);
+  async findOne(@Param('id') id: string) {
+    const findOneId = await this.userService.findOne(+id);
+    if (findOneId == null) {
+      return {
+        message: 'user tidak ditemukan',
+      };
+    }
+    return findOneId;
   }
 
   @Patch(':id')
   @UsePipes(ValidationPipe)
-  update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
+  async update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
+    const findOneId = await this.userService.findOne(+id);
+    if (findOneId == null) {
+      return {
+        message: 'user tidak ditemukan',
+      };
+    }
     return this.userService.update(+id, updateUserDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
+  async remove(@Param('id') id: string) {
+    const findOneId = await this.userService.findOne(+id);
+    if (findOneId == null) {
+      return {
+        message: 'user tidak ditemukan',
+      };
+    }
     return this.userService.remove(+id);
   }
 }

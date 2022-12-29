@@ -27,32 +27,52 @@ export class NotaPenjualanService {
     return this.notaPembelianRepository.find();
   }
 
-  findOne(id_penjualan: number) {
-    return this.notaPembelianRepository.findOneBy({ id_penjualan });
+  async findOne(id_penjualan: number) {
+    const findOneId = await this.notaPembelianRepository.findOneBy({
+      id_penjualan,
+    });
+    if (findOneId == null) {
+      return {
+        message: 'user tidak ditemukan',
+      };
+    }
+    return findOneId;
   }
 
   async update(
     id_penjualan: number,
     updateNotaPenjualanDto: UpdateNotaPenjualanDto,
   ) {
-    const penjualanUpdate = await this.notaPembelianRepository.update(
+    const findOneId = await this.notaPembelianRepository.findOneBy({
+      id_penjualan,
+    });
+    if (findOneId == null) {
+      return {
+        message: 'user tidak ditemukan',
+      };
+    }
+    await this.notaPembelianRepository.update(
       id_penjualan,
       updateNotaPenjualanDto,
     );
-    if (penjualanUpdate) {
-      return {
-        message: 'data penjualan berhasil diperbarui',
-        user: updateNotaPenjualanDto,
-      };
-    }
+    return {
+      message: 'data penjualan berhasil diperbarui',
+      user: updateNotaPenjualanDto,
+    };
   }
 
-  remove(id_penjualan: number) {
-    const penjualanDelete = this.notaPembelianRepository.delete(id_penjualan);
-    if (penjualanDelete) {
+  async remove(id_penjualan: number) {
+    const findOneId = await this.notaPembelianRepository.findOneBy({
+      id_penjualan,
+    });
+    if (findOneId == null) {
       return {
-        message: 'data penjualan berhasil dihapus',
+        message: 'user tidak ditemukan',
       };
     }
+    await this.notaPembelianRepository.delete(id_penjualan);
+    return {
+      message: 'data penjualan berhasil dihapus',
+    };
   }
 }

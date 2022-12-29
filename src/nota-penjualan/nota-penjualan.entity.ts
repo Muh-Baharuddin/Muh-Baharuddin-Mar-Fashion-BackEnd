@@ -6,5 +6,5 @@ export class NotaPenjualan {
   id_penjualan: number;
 
   @Column()
-  tanggal_penjualan: string;
+  tanggal_penjualan: Date;
 }
