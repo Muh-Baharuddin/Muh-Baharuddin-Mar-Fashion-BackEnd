@@ -1,4 +1,8 @@
 import { PartialType } from '@nestjs/mapped-types';
-import { CreateDaftarKelambuDto } from '../create-dto/create-daftar-kelambu.dto'; 
+import { CreateDaftarKelambuDto } from '../create-dto/create-daftar-kelambu.dto';
 
-export class UpdateDaftarBarangDto extends PartialType(CreateDaftarKelambuDto) {}
+export class UpdateDaftarKelambuDto extends PartialType(
+  CreateDaftarKelambuDto,
+) {
+  id_kelambu: number;
+}

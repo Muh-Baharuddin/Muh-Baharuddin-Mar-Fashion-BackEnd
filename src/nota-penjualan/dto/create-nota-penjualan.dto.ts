@@ -1,6 +1,7 @@
-import { IsNotEmpty } from 'class-validator';
+import { IsNotEmpty, IsDateString } from 'class-validator';
 
 export class CreateNotaPenjualanDto {
   @IsNotEmpty({ message: 'tanggal_penjualan tidak boleh kosong' })
-  tanggal_penjualan: string;
+  @IsDateString({ message: 'tanggal tidak sesuai' })
+  tanggal_penjualan: Date;
 }

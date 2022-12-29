@@ -1,9 +1,10 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
+import { DaftarBarang } from './daftar-barang.entity';
 
 @Entity()
 export class Gamis {
   @PrimaryGeneratedColumn()
-  id_barang: number;
+  id_gamis: number;
 
   @Column()
   merek: string;
@@ -16,4 +17,7 @@ export class Gamis {
 
   @Column()
   warna: string;
+
+  @ManyToOne(() => DaftarBarang, (daftarBarang) => daftarBarang.gamis)
+  daftarBarang: DaftarBarang;
 }
