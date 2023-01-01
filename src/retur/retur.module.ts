@@ -8,6 +8,6 @@ import { Retur } from './retur.entity';
   imports: [TypeOrmModule.forFeature([Retur])],
   exports: [TypeOrmModule],
   controllers: [ReturController],
-  providers: [ReturService]
+  providers: [ReturService],
 })
 export class ReturModule {}

@@ -9,9 +9,9 @@ import {
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
-import { NotaPembelianService } from './nota-pembelian.service';
-import { CreateNotaPembelianDto } from './dto/create-nota-pembelian.dto';
-import { UpdateNotaPembelianDto } from './dto/update-nota-pembelian.dto';
+import { NotaPembelianService } from 'src/data-keuangan/service/nota-pembelian/nota-pembelian.service';
+import { CreateNotaPembelianDto } from 'src/data-keuangan/dto/create/create-nota-pembelian.dto';
+import { UpdateNotaPembelianDto } from 'src/data-keuangan/dto/update/update-nota-pembelian.dto';
 
 @Controller('nota-pembelian')
 export class NotaPembelianController {

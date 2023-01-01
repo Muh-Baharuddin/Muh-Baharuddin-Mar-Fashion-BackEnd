@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { NotaPembelianController } from './nota-pembelian.controller';
-import { NotaPembelianService } from './nota-pembelian.service';
+import { NotaPembelianService } from '../../service/nota-pembelian/nota-pembelian.service';
 
 describe('NotaPembelianController', () => {
   let controller: NotaPembelianController;

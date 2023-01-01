@@ -18,6 +18,9 @@ export class Gorden {
   @Column()
   warna: string;
 
+  @Column()
+  stok: number;
+
   @ManyToOne(() => DaftarBarang, (daftarBarang) => daftarBarang.gorden)
   daftarBarang: DaftarBarang;
 }

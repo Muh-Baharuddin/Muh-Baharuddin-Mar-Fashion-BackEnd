@@ -8,7 +8,7 @@ export const dataSourceOptions: DataSourceOptions = {
   password: 'Mypassis1',
   database: 'mar_fashion_db',
   entities: ['dist/**/*.entity{.ts,.js}'],
-  migrations: ['dist/database/migrations/*{.ts,.js}'],
+  migrations: ['dist/database/migration/*{.ts,.js}'],
 };
 
 const dataSource = new DataSource(dataSourceOptions);

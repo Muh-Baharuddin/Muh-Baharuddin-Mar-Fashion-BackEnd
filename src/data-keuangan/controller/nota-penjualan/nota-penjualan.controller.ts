@@ -9,9 +9,9 @@ import {
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
-import { NotaPenjualanService } from './nota-penjualan.service';
-import { CreateNotaPenjualanDto } from './dto/create-nota-penjualan.dto';
-import { UpdateNotaPenjualanDto } from './dto/update-nota-penjualan.dto';
+import { NotaPenjualanService } from 'src/data-keuangan/service/nota-penjualan/nota-penjualan.service';
+import { CreateNotaPenjualanDto } from '../../dto/create/create-nota-penjualan.dto';
+import { UpdateNotaPenjualanDto } from '../../dto/update/update-nota-penjualan.dto';
 
 @Controller('nota-penjualan')
 export class NotaPenjualanController {

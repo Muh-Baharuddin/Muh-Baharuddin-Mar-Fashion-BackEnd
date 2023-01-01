@@ -18,6 +18,9 @@ export class kemeja {
   @Column()
   warna: string;
 
+  @Column()
+  stok: number;
+
   @ManyToOne(() => DaftarBarang, (daftarBarang) => daftarBarang.kemeja)
   daftarBarang: DaftarBarang;
 }
