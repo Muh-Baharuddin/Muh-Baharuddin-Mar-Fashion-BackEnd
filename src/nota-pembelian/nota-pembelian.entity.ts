@@ -13,6 +13,9 @@ export class NotaPembelian {
   id_pembelian: number;
 
   @Column()
+  list_barang: string;
+
+  @Column()
   tanggal_pembelian: string;
 
   @Column()
