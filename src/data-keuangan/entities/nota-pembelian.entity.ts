@@ -16,7 +16,7 @@ export class NotaPembelian {
   list_barang: string;
 
   @Column()
-  tanggal_pembelian: string;
+  tanggal_pembelian: Date;
 
   @Column()
   total_pengeluaran: string;

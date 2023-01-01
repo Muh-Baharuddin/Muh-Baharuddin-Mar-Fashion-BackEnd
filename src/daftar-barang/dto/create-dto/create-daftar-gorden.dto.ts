@@ -12,4 +12,7 @@ export class CreateDaftarGordenDto {
 
   @IsNotEmpty({ message: 'warna tidak boleh kosong' })
   warna: string;
+
+  @IsNotEmpty({ message: 'stok tidak boleh kosong' })
+  stok: number;
 }

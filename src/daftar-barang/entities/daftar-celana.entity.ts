@@ -18,6 +18,9 @@ export class Celana {
   @Column()
   warna: string;
 
+  @Column()
+  stok: number;
+
   @ManyToOne(() => DaftarBarang, (daftarBarang) => daftarBarang.celana)
   daftarBarang: DaftarBarang;
 }

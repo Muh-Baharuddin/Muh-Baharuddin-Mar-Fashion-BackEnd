@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { CreateNotaPembelianDto } from './dto/create-nota-pembelian.dto';
-import { UpdateNotaPembelianDto } from './dto/update-nota-pembelian.dto';
-import { NotaPembelian } from './nota-pembelian.entity';
+import { CreateNotaPembelianDto } from 'src/data-keuangan/dto/create/create-nota-pembelian.dto';
+import { UpdateNotaPembelianDto } from 'src/data-keuangan/dto/update/update-nota-pembelian.dto';
+import { NotaPembelian } from 'src/data-keuangan/entities/nota-pembelian.entity';
 
 @Injectable()
 export class NotaPembelianService {

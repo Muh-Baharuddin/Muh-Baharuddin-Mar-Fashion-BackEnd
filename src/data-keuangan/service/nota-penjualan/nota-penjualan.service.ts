@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { NotaPenjualan } from './nota-penjualan.entity';
-import { CreateNotaPenjualanDto } from './dto/create-nota-penjualan.dto';
-import { UpdateNotaPenjualanDto } from './dto/update-nota-penjualan.dto';
+import { NotaPenjualan } from 'src/data-keuangan/entities/nota-penjualan.entity';
+import { CreateNotaPenjualanDto } from 'src/data-keuangan/dto/create/create-nota-penjualan.dto';
+import { UpdateNotaPenjualanDto } from 'src/data-keuangan/dto/update/update-nota-penjualan.dto';
 
 @Injectable()
 export class NotaPenjualanService {

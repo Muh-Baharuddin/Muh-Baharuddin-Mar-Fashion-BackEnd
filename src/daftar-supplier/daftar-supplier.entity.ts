@@ -1,5 +1,5 @@
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
-import { NotaPembelian } from 'src/nota-pembelian/nota-pembelian.entity';
+import { NotaPembelian } from 'src/data-keuangan/entities/nota-pembelian.entity';
 
 @Entity()
 export class DaftarSupplier {
