@@ -7,26 +7,18 @@ import { DaftarSupplierModule } from './daftar-supplier/daftar-supplier.module';
 import { NotaPembelianModule } from './nota-pembelian/nota-pembelian.module';
 import { NotaPenjualanModule } from './nota-penjualan/nota-penjualan.module';
 import { DaftarBarangModule } from './daftar-barang/daftar-barang.module';
+import { ReturModule } from './retur/retur.module';
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot({
-      type: 'postgres',
-      host: 'localhost',
-      port: 5432,
-      username: 'neoncat',
-      password: 'Mypassis1',
-      database: 'mar_fashion_db',
-      entities: ['dist/**/*.entity{.ts,.js}'],
-      migrations: ['dist/database/migrations/*{.ts,.js}'],
-      synchronize: true,
-    }),
+    TypeOrmModule.forRoot(dataSourceOptions),
     UserModule,
     DaftarKaryawanModule,
     DaftarSupplierModule,
     NotaPembelianModule,
     NotaPenjualanModule,
     DaftarBarangModule,
+    ReturModule,
   ],
 })
 export class AppModule {}
